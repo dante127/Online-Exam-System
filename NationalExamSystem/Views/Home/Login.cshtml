@@ -1,0 +1,46 @@
+﻿<!-- Start Login
+   ============================================= -->
+<div class="login-area default-padding">
+    <div class="container">
+        <div class="row">
+
+            @if(Session["stumsg"]!=null)
+            {
+                <h1 style="color:red">@Session["stumsg"]</h1>
+            }
+            <div class="col-md-8 col-md-offset-2">
+                <form action="@Url.Action("Login","home")" method="post" id="login-form" class="white-popup-block">
+                    <div class="col-md-8 login-custom">
+                        <h4>login to your registered account!</h4>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="form-group">
+
+                                       
+                                    <input class="form-control" name="Email" placeholder="Email*" type="email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="form-group">
+                                    <input class="form-control" name="NationNumber" placeholder="NationNumber*" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-12">
+                            <div class="row">
+                                <button type="submit">
+                                    Login
+                                </button>
+                            </div>
+                        </div>
+                        <p class="link-bottom">Not a member yet? <a href="@Url.Action("Register","home")">Register now</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Login Area -->

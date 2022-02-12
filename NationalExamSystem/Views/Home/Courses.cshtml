@@ -1,0 +1,42 @@
+﻿@model IEnumerable<NationalExamSystem.Models.Course>
+
+<!-- Start Popular Courses
+   ============================================= -->
+<div class="popular-courses default-padding bottom-less without-carousel">
+    <div class="container">
+        <div class="row">
+            <div class="popular-courses-items bottom-price">
+                @foreach (NationalExamSystem.Models.Course c in Model)
+                {
+                <!-- Single Item -->
+                <div class="col-md-4 col-sm-6 equal-height">
+                    <div class="item">
+                        <div class="thumb">
+                            <a href="course-details.html">
+                                <img src="~/assets/img/@c.Img" />
+                            </a>
+                            <div class="overlay">
+                                <a class="btn btn-theme effect btn-sm" href="@Url.Action("CourseDetails","home",new { id=@c.CourseId})">
+                                    <i class="fas fa-chart-bar"></i> Details
+                                </a>
+                            </div>
+                        </div>
+                        <div class="info">
+                           
+                            <h4><a href="@Url.Action("CourseDetails","home",new { id=@c.CourseId})">@c.CourseName</a></h4>
+                        
+                            <p>
+                                Would day nor ask walls known. But preserved advantage are but and certainty earnestly enjoyment.
+                            </p>
+                          
+                        </div>
+                    </div>
+                </div>
+                <!-- End Single Item -->
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Popular Courses -->

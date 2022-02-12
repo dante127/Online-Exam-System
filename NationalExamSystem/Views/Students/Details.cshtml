@@ -1,0 +1,89 @@
+﻿@model NationalExamSystem.Models.Student
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "../Admin/layout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<br />
+
+
+<div class="col-lg-offset-1">
+    <h4 class="text-center">Student Info</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Exam.ExamName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Exam.ExamName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.birthdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.birthdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NationNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NationNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceNumber)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+    </dl>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-2">
+        <a href="@Url.Action("index","Students")" class="btn btn-info">Back</a>
+    </div>
+</div>

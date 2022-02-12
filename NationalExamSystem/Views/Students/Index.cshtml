@@ -1,0 +1,71 @@
+﻿@model IEnumerable<NationalExamSystem.Models.Student>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "../Admin/layout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-striped table-advance table-hover" style="margin-left:12%">
+    
+    <tr>
+        <td>
+            <a href="@Url.Action("Create")" class="btn btn-info">Add New Student</a>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Exam.ExamName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.NationNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceNumber)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Exam.ExamName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+      
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.NationNumber)
+        </td>
+        <td>
+            <img src="~/assets/img/@item.InvoiceImage" width="50px" height="50px" alt="@item.InvoiceImage" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceNumber)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.StudentId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.StudentId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.StudentId })
+        </td>
+    </tr>
+}
+
+</table>

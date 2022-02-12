@@ -1,0 +1,163 @@
+﻿@model NationalExamSystem.Models.Student
+    @using NationalExamSystem.Models;
+<!-- Start Students Profiel
+  ============================================= -->
+<div class="students-profiel adviros-details-area default-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 thumb">
+                <img src="~/img/exam.jpg" alt="Thumb">
+            </div>
+            <div class="col-md-7 info main-content">
+                <!-- Star Tab Info -->
+                <div class="tab-info">
+                    <!-- Tab Nav -->
+                    <ul class="nav nav-pills">
+                        <li class="active">
+                            <a data-toggle="tab" href="#tab1" aria-expanded="true">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#tab2" aria-expanded="false">
+                                Exams
+                            </a>
+                        </li>
+
+                        @if (Model.Exam.IsActive == false)
+                        {
+                         <li>
+                            <a data-toggle="tab" href="#tab3" aria-expanded="false">
+                                Old Questions
+                            </a>
+                         </li>
+                        }
+
+                    </ul>
+                    <!-- End Tab Nav -->
+                    <!-- Start Tab Content -->
+                    <div class="tab-content tab-content-info">
+                        <!-- Single Tab -->
+                        <div id="tab1" class="tab-pane fade active in">
+                            <div class="info title">
+                                <p>
+                                     National Exam in Informatics
+                                </p>
+                          
+                                <ul>
+                                    <li>
+                                        Name <span>@Model.Name</span>
+                                    </li>
+                                    <li>
+                                        Contact <span>@Model.phone</span>
+                                    </li>
+                                    <li>
+                                        Email <span>@Model.Email</span>
+                                    </li>
+                                    <li>
+                                        Exam <span>Informatics National Exam</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- End Single Tab -->
+                        <!-- Single Tab -->
+                        <div id="tab2" class="tab-pane fade">
+                            <div class="info title">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>id</th>
+                                                <th>Exam</th>
+                                                <th>Exam Date</th>
+                                                <th>Mark</th>
+                                                <th>Start</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                           
+                                            <tr>
+                                                <td>@Model.ExamId</td>
+                                                <td><a href="#">@Model.Exam.ExamName</a></td>
+                                                <td>@Model.Exam.StartTime</td>
+                                                @if (Session["stumark"] == null)
+                                                {
+                                                <td></td>
+                                                }
+                                                else
+                                                {
+                                                    double m = Convert.ToDouble(Session["stumark"].ToString());
+                                                    if (m > 40)
+                                                    {
+                                                    <td> <span style="color:green">@Session["stumark"]</span> </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td> <span style="color:red">@Session["stumark"]</span> </td>
+
+                                                    }
+                                                }
+
+
+                                                @if (Model.Exam.IsActive == true)
+                                                {
+
+                                                <td><a href="@Url.Action("Exam", "ExamStart")">Start Exam</a></td>
+
+                                                }
+                                                else
+                                                {
+                                                    <td>NO Exam </td>
+
+                                                }
+                                            </tr>
+                                          
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Tab -->
+
+              
+                        <!-- Single Tab -->
+                        <div id="tab3" class="tab-pane fade">
+                            <div class="info title">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>id</th>
+                                                <th>Exam</th>
+                                                <th>Exam Date</th>
+                                                <th>Question</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+                                                <td>@Model.ExamId</td>
+                                                <td><a href="#">@Model.Exam.ExamName</a></td>
+                                                <td>@Model.Exam.StartTime</td>
+                                                <td> <a href="@Url.Action("Export", "Export")">View</a> </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Tab -->
+
+                       
+
+
+                    </div>
+                    <!-- End Tab Content -->
+                </div>
+                <!-- End Tab Info -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Students Profile -->

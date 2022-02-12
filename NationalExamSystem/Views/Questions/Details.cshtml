@@ -1,0 +1,79 @@
+﻿@model NationalExamSystem.Models.Question
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "../Admin/layout.cshtml";
+
+}
+
+<br />
+<br />
+<br />
+<br />
+<div class="col-lg-offset-1">
+    <h4 class="text-center">Question Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Difficulty.Level)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Difficulty.Level)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Teacher.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Teacher.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Question1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Question1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionFile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionFile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Img)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Img)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mark)
+        </dd>
+
+    </dl>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-2">
+        <a href="@Url.Action("index","Questions")" class="btn btn-info">Back</a>
+    </div>
+</div>

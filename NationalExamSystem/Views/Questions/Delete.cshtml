@@ -1,0 +1,66 @@
+﻿@model NationalExamSystem.Models.Question
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "../Admin/layout.cshtml";
+
+}
+
+<br />
+<br />
+<br />
+<br />
+
+<h2  class="text-center">Are you sure you want to delete this?</h2>
+
+<table class="table table-striped table-advance table-hover" style="margin-left:12%;width:auto; white-space: nowrap;">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Category.Name)</th>
+        <td>@Html.DisplayFor(model => model.Category.Name)</td>
+    </tr>
+
+     <tr>
+        <th>@Html.DisplayNameFor(model => model.Difficulty.Level)</th>
+        <td>@Html.DisplayFor(model => model.Difficulty.Level)</td>
+     </tr>
+
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Teacher.Name)</th>
+        <td>@Html.DisplayFor(model => model.Teacher.Name)</td>
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Question1)</th>
+        <td>@Html.DisplayFor(model => model.Question1)</td>
+    </tr>
+
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Img)</th>
+        <td>@Html.DisplayFor(model => model.Img)</td>
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Mark)</th>
+        <td>@Html.DisplayFor(model => model.Mark)</td>
+    </tr>
+    <tr>
+        <td>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
+        </td>
+    </tr>
+   
+
+</table>
+    
+
+
+
+          
+
+  

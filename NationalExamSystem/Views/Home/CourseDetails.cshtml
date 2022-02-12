@@ -1,0 +1,221 @@
+﻿@model NationalExamSystem.Models.Course
+<!-- Start Course Details
+ ============================================= -->
+<div class="course-details-area default-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="course-details-info">
+                    <!-- Star Top Info -->
+                    <div class="top-info">
+                        <!-- Title-->
+                        <div class="title">
+                            <h2>@Model.CourseName</h2>
+                        </div>
+                        <!-- End Title-->
+                        <!-- Thumbnail -->
+                        <div class="thumb">
+                            <img src="~/assets/img/@Model.Img" alt="Thumb">
+                        </div>
+                        <!-- End Thumbnail -->
+                        <!-- Course Meta -->
+                        <div class="course-meta">
+                            <div class="item author">
+                                
+                                <div class="desc">
+                                    <h4>Author</h4>
+                                    <a href="#">@Model.Teacher.Name</a>
+                                </div>
+                            </div>
+                            <div class="item category">
+                                <h4>Category</h4>
+                                <a href="#">@Model.Category.Name</a>
+                            </div>
+                       
+              
+                           
+                        </div>
+                        <!-- End Course Meta -->
+                    </div>
+                    <!-- End Top Info -->
+                    <!-- Star Tab Info -->
+                    <div class="tab-info">
+                        <!-- Tab Nav -->
+                        <ul class="nav nav-pills">
+                            <li class="active">
+                                <a data-toggle="tab" href="#tab1" aria-expanded="true">
+                                    Overview
+                                </a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#tab2" aria-expanded="false">
+                                    References
+                                </a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#tab3" aria-expanded="false">
+                                    Teacher
+                                </a>
+                            </li>
+                          
+                        </ul>
+                        <!-- End Tab Nav -->
+                        <!-- Start Tab Content -->
+                        <div class="tab-content tab-content-info">
+                            <!-- Single Tab -->
+                            <div id="tab1" class="tab-pane fade active in">
+                                <div class="info title">
+                                    <h4>Course Desscription</h4>
+                                    <p>
+                                        @Model.LongDesc
+                                    </p>
+                                   
+                                   
+                                   
+                                </div>
+                            </div>
+                            <!-- End Single Tab -->
+                            <!-- Single Tab -->
+                            <div id="tab2" class="tab-pane fade">
+                                <div class="info title">
+                                    <p>
+                                        Useful Reference to pass the exam
+                                    </p>
+                                    <h4>@Model.CourseName Slide</h4>
+                                    <!-- Start Course List -->
+                                    <div class="course-list-items acd-items acd-arrow">
+                                        <div class="panel-group symb" id="accordion">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a data-toggle="collapse" data-parent="#accordion" href="#ac1">
+                                                           @Model.CourseName
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="ac1" class="panel-collapse collapse in">
+                                                    <div class="panel-body">
+                                                        <ul>
+                                                            <li>
+                                                                <div class="item name">
+                                                                    <i class="fas fa-play"></i>
+                                                                    <span>Lecture 1.1</span>
+                                                                </div>
+                                                                <div class="item title">
+                                                                    <h5>@Model.Reference</h5>
+                                                                </div>
+                                                                <div class="item info">
+                                                                   
+                                                                    <a href="@Url.Action("Download","home",new { file=Model.Reference})">Preview</a>
+                                                                </div>
+                                                            </li>
+                                                        
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Course List -->
+         
+                                </div>
+                            </div>
+                            <!-- End Single Tab -->
+                            <!-- Single Tab -->
+                            <div id="tab3" class="tab-pane fade">
+                                <div class="info title">
+                                    <div class="advisor-list-items">
+                                        
+                                        <!-- Advisor Item -->
+                       
+
+                                        <div class="item">
+                                            <div class="thumb">
+                                                <img src="~/assets/teacher.jpg" alt="Thumb">
+                                            </div>
+                                            <div class="info">
+                                                <h4>@Model.Teacher.Name</h4>
+                                                <span>senior lecturer</span>
+                                                <p>
+                                                    Several carried through an of up attempt gravity. Situation to be at offending elsewhere distrusts if. Particular use for considered projection cultivated. Worth of do doubt shall
+                                                </p>
+                                                <ul>
+                                                    <li>
+                                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"><i class="fab fa-twitter"></i></a>
+                                                    </li>
+                                                
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- End Advisor Item -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Single Tab -->
+                     
+                        </div>
+                        <!-- End Tab Content -->
+                    </div>
+                    <!-- End Tab Info -->
+                </div>
+            </div>
+            <!-- Start Sidebar -->
+            <div class="col-md-4">
+                <div class="sidebar">
+                    <aside>
+                       
+                        <!-- Sidebar Item -->
+                        <div class="sidebar-item category">
+                            <div class="title">
+                                <h4>Courses Category</h4>
+                            </div>
+                            <div class="sidebar-info">
+                                <ul>
+                                    <li>
+                                        <a href="@Url.Action("CateCrs","home",new { cateid=Model.CateId})">@Model.Category.Name <span></span></a>
+                                    </li>
+                                  
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- End Sidebar Item -->
+                        <!-- Sidebar Item -->
+                        <div class="sidebar-item recent-post">
+                            <div class="title">
+                                <h4>Popular Courses</h4>
+                            </div>
+                            @foreach(var i in ViewBag.pup) {
+                            <div class="item">
+                                <div class="content">
+                                    <div class="thumb">
+                                        <a href="#">
+                                            <img src="~/assets/img/@i.Img" alt="Thumb">
+                                        </a>
+                                    </div>
+                                    <div class="info">
+                                        <h4>
+                                            <a href="#">@i.CourseName</a>
+                                        </h4>
+                                        <div class="meta">
+                                            <i class="fas fa-user"></i> By <a href="#">@i.Teacher.Name</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            }
+
+                        </div>
+                        <!-- End Sidebar Item -->
+
+                    </aside>
+                </div>
+            </div>
+            <!-- End Sidebar -->
+        </div>
+    </div>
+</div>
+<!-- End Course Details -->

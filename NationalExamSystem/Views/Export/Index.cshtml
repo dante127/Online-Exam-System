@@ -1,0 +1,66 @@
+﻿@model IEnumerable<NationalExamSystem.Models.Question>
+@using NationalExamSystem.Models;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 9pt;
+        }
+    </style>
+</head>
+<body>
+    <br />
+    <br />
+    @using (Html.BeginForm("Export", "Export", FormMethod.Post))
+    {
+        <input type="hidden" name="GridHtml" />
+        <input type="submit" id="btnSubmit" value="Export To Word" style="font-size:32px" />
+    }
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnSubmit").click(function () {
+                $("input[name='GridHtml']").val($("#Grid").html());
+            });
+        });
+    </script>
+
+    <h4 style="direction:rtl">Questions</h4>
+    <hr />
+    <div id="Grid">
+        
+  @foreach(var i in Model)
+  {
+      <h2 style="direction:rtl">@i.Question1 </h2>
+      <hr />
+      foreach (var q in i.Options)
+      {
+          if (q.CorrectAnswer == true)
+          {
+            <p style="color:green;direction:rtl">@q.Answer</p>
+          }
+          else
+          {
+            <p style="direction:rtl">@q.Answer</p>
+          }
+
+      }
+      <br />
+  }
+
+
+
+
+    </div>
+
+</body>
+</html>

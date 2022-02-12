@@ -1,0 +1,45 @@
+﻿@model NationalExamSystem.Models.Choosen_Question
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "../Admin/layout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<br />
+
+<h3 class="text-center">Are you sure you want to delete this?</h3>
+
+<table class="table table-striped table-advance table-hover" style="margin-left:12%;width:auto; white-space: nowrap;">
+    
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Exam.ExamName)</th>
+        <td>@Html.DisplayFor(model => model.Exam.ExamName)</td>
+    </tr>
+
+    <tr>
+        <th>Question</th>
+        <td>@Html.DisplayNameFor(model => model.Question.Question1)</td>
+    </tr>
+
+    <tr>
+        <td>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
+        </td>
+    </tr>
+    </table>
+
+  
+
+
+     

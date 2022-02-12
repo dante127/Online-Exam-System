@@ -1,0 +1,123 @@
+﻿@model NationalExamSystem.Models.QuestionModel
+
+@{ 
+    Layout = "~/Views/Shared/_Layout 2.cshtml";
+}
+
+@{
+    int id = Convert.ToInt32(ViewBag.id);
+    int count = Convert.ToInt32(ViewBag.cnt);
+}
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div>Time Remaning: <span id="minRemaining">:</span><span id="secRemaining"></span></div>
+    </div>
+    <div class="col-md-12">
+        <h1> Mark is = @Session["mark"]</h1>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>  
+<div id="aaa">
+
+    @using (Ajax.BeginForm("postans", "ExamStart", new AjaxOptions
+    {
+        HttpMethod="POST",
+        UpdateTargetId="aaa"
+    }))
+    {
+
+        <input type="hidden" name="direction" value="forward" />
+        <div name="quesid">
+            <input type="hidden" name="quesid" value="@Model.qid" />
+        </div>
+
+
+        <div class="row col-md-12" style="margin-left:12px">
+            <p>
+                <br />
+                @Model.question
+
+            </p>
+
+            <div class="prelude">Choose the correct answer</div>
+            <ul class="js_choices">
+
+                @for (int i = 0; i < Model.Options.Count; i++)
+                {
+                    <li>
+                        <div name="OptionId">
+                            <input type="hidden" value="@Model.Options[i].OptionId" name="OptionId" />
+                        </div>
+                        <div name="option">
+                            <input type="radio" name="option" id="option" class="radio" value="@Model.Options[i].Answer" />
+                        </div>
+                        @Model.Options[i].Answer
+
+                    </li>
+                }
+            </ul>
+
+        </div>
+
+
+
+
+        <div class="row">
+            <div class="col-md-10">
+                <table>
+                    <tr>
+                        <td><a href="javascript:void(0);" class="btn btn-primary" onclick="saveBackward(this)"> Save & previous</a> </td>
+                        <td><a href="@Url.Action("Eval","ExamStart", new { q = (id+1)>count?id:id+1 })" class="btn btn-default">Next</a>  </td>
+
+                        @for (int i = 0; i < (int)ViewBag.cnt; i++)
+                {
+                            <td>
+                                <a href="@Url.Action("Eval","ExamStart", new { q = (i + 1) })" class="btn @(id==(i+1)?"btn-primary":"btn-default")">@(i + 1)</a>
+                            </td>
+                        }
+                        <td><a href="@Url.Action("Eval","ExamStart", new { q = (id-1)<1?1:id-1})" class="btn btn-default">Back</a>  </td>
+
+                        <td><a href="javascript:void(0);" class="btn btn-primary" onclick="saveForward(this)">>|<< Save & Next</a> </td>
+
+                        <td>
+                            <input name="submit" type="submit" value="Submit">
+
+
+                        </td>
+
+                        @ViewBag.rec
+                    </tr>
+
+
+                </table>
+            </div>
+        </div>
+
+    }
+
+</div>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script> 
+
+<script>
+
+ 
+    //-----------------------
+
+    //function saveForward(sender) {
+    //    $('#direction').val('forward');
+    //    document.getElementById('form').submit();
+    //}
+
+    //function saveBackward(sender) {
+    //    $('#direction').val('backward');
+    //    document.getElementById('form').submit();
+    //}
+
+</script>

@@ -1,0 +1,100 @@
+﻿@model NationalExamSystem.Models.Student
+<!-- Start Login
+  ============================================= -->
+<div class="login-area default-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                @if (Session["reg"] != null) {
+               <h1 style="color:green">@Session["reg"]</h1>
+               }
+                 <form action="@Url.Action("Register","Home")" id="register-form" class="white-popup-block" method="post">
+                  
+                    <div class="col-md-8 login-custom">
+                        <h4>Register a new account</h4>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="form-group">
+                            @Html.TextBoxFor(m => m.Name, new { placeholder = "Name", @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="form-group">
+                                    <input class="form-control" name="birthdate" placeholder="birthdate*" type="date">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="form-group">
+                                    <input class="form-control" name= "phone" placeholder ="phone*" type="text"> 
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="form-group">
+                                    <input class="form-control" name="Email" placeholder="Email*" type="email">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="form-group">
+                                    <input class="form-control" name ="NationNumber" placeholder="NationNumber*" type="text">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="form-group">
+                                    <input class="form-control" name="InvoiceNumber" placeholder="InvoiceNumber*" type="text">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="form-group">
+                                    <input class="form-control" name="InvoiceImage" placeholder="InvoiceImage*" type="file" required>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="form-group">
+                                    @Html.DropDownList("ExamId", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ExamId, "", new { @class = "text-danger" })                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col-md-12">
+                            <div class="row">
+                                <button type="submit">
+                                    Sign up
+                                </button>
+                            </div>
+                        </div>
+                        <p class="link-bottom">Are you a member? <a href="@Url.Action("Login","home")">Login now</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Login Area -->

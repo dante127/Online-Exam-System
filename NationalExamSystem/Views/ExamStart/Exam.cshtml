@@ -1,0 +1,267 @@
+﻿@using NationalExamSystem.Models;
+@model NationalExamSystem.Models.Question
+
+@{ 
+    Layout = "~/Views/Shared/_Layout 2.cshtml";
+}
+@{
+    
+     var endtime = DateTime.UtcNow.AddSeconds(59);
+     double  timeRem = TimeSpan.FromTicks(endtime.Ticks - DateTime.UtcNow.Ticks).TotalSeconds;
+
+}
+<!-- Start Faq With Left Sidebar
+ ============================================= -->
+<div class="faq-area left-sidebar course-details-area default-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 faq-content">
+              
+                <!-- Start Accordion -->
+                <div class="acd-items acd-arrow">
+                    <div class="panel-group symb" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                  
+                          
+                            </div>
+                            <div id="ac1" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <p>
+                                        @if (Model != null)
+                                        {
+                                            <h1 style="direction:rtl"> @Html.Raw(Model.Question1)     </h1>
+                                          
+                                        }
+                                     </p>
+                                   
+                                    <form method="post" action="@Url.Action("postans","ExamStart")">
+                                        <input type="hidden" name="quesid" value="@Model.Id" />
+                                        <table>
+                          
+                                            @foreach (var i in ViewBag.ops)
+                                            {
+                                                <tr>
+
+
+                                                    <th> <input type="hidden" value="@i.OptionId" name="OptionId" />
+
+
+                                              
+                                                 @if (QuestionModel.dic.ContainsValue(i.Answer))
+                                                 {
+                                                    <th>  <input type="radio" name="option" value="@i.Answer" checked="checked" /></th>
+                                                   
+
+                                                 }
+
+                                                 else
+                                                 {
+                                                    <th>  <input type="radio" name="option" value="@i.Answer"  /></th>
+
+                                                  
+
+
+                                                 }
+                                                    <td class="col-md-8">
+                                                        <p name="option" style="direction:rtl">@i.Answer</p>
+                                                    </td>
+                                                </tr>
+
+
+                                            }
+
+                                        </table>
+                                        
+                                        @if (Model.Id >= 1)
+                                        {
+                                        <input type="submit" value="submit Answer" class="btn btn-success" id="subAns" />
+                                        }
+                                    </form>
+               
+                                </div>
+                            </div>
+                        </div>
+           
+                    </div>
+                </div>
+                <!-- End Accordion -->
+            </div>
+            <!-- Start Sidebar -->
+            <div class="left-sidebar col-md-4">
+                <div class="sidebar">
+                  
+                    <aside>
+                        <!-- Sidebar Item -->
+                       
+                        <div class="row">
+                            <a href="@Url.Action("EndExam","ExamStart")" class="btn btn-danger" id="testEx">
+                                End Exam
+                            </a>
+                            <div class="col-md=-12">
+                                <div>Time Remaining</div><span id="minRem">:</span>
+                                <span id="secRem"></span>
+                            </div>
+                            
+                        </div>
+                        <!-- End Sidebar Item -->
+                        
+                        <!-- Sidebar Item -->
+                        <div class="sidebar-item category">
+                            <div class="title">
+                                <h4>Questions</h4>
+                            </div>
+                                <div class="sidebar-info">
+                                    <form method="get">
+
+                                        <ul>
+                                            @{ 
+                                                List<Choosen_Question> list = (List<Choosen_Question>)ViewBag.e;
+                                            }
+                                            @for ( int i=0; i<list.Count; i++)
+                                            {
+
+                                                <li>
+                                                    <a href="@Url.Action("next","ExamStart",new { id=@list[i].questionId})" class="btn btn-default" onsubmit="show()">Question :@(i+1)
+                                                   
+                                                    </a>
+                                                    
+                                                </li>
+                                            }
+
+
+                                        </ul>
+
+                                     
+                                    </form>
+                        </div>
+
+                        </div>
+                        <!-- End Sidebar Item -->
+       
+
+                    </aside>
+                </div>
+            </div>
+            <!-- End Sidebar -->
+        </div>
+    </div>
+</div>
+<!-- End Faq -->
+
+<script>
+
+
+
+
+    function formatNumber(number)
+    {
+        if(number<10)
+        {
+            return '0' +number;
+        }
+        else{
+            return ''+number;
+        }
+    }
+
+    var remSec = @timeRem;
+    var secCounter =remSec%60;
+
+    
+
+
+    //minRem  secRem
+    function startTick()
+    {
+        document.getElementById("testEx").style.display = 'none';
+
+        //------------------------------------
+
+        if (localStorage.getItem("counter")) 
+        {
+            if (localStorage.getItem("counter") <= 0) 
+            {
+                var value = secCounter;
+                alert(value);
+            } else 
+            {
+                var value = localStorage.getItem("counter");
+            }
+        } 
+        else
+        {
+            var value = secCounter;
+        }
+        //-------------------------------------
+
+        //-------------------------------------
+        if (localStorage.getItem("sec")) 
+        {
+            if (localStorage.getItem("sec") <= 0) 
+            {
+                var valsec = remSec;
+                alert(valsec)
+            } else 
+            {
+                var valsec = localStorage.getItem("sec");
+            }
+        } 
+        else
+        {
+            var valsec = remSec;
+        }
+        //--------------------------------------
+
+
+
+
+        document.getElementById("secRem").innerText = formatNumber(value);
+       // document.getElementById("minRem").innerText = formatNumber(parseInt (remSec/60));
+        document.getElementById("minRem").innerText = formatNumber(parseInt (valsec/60));
+
+
+        var tick = setInterval(function(){
+
+            if(valsec >0)
+            {
+
+                valsec = valsec-1;
+        
+
+                //secCounter = secCounter-1;
+                value = parseInt(value)-1;
+                
+                localStorage.setItem("counter", value);
+                localStorage.setItem("sec", valsec);
+
+
+                document.getElementById("secRem").innerText = formatNumber(value);
+//                document.getElementById("minRem").innerText = formatNumber(parseInt (remSec/60));
+                document.getElementById("minRem").innerText = formatNumber(parseInt (valsec/60));
+
+                if(value==0)
+                {
+                    localStorage.setItem("counter", secCounter);
+                    value = remSec;
+                    //secCounter=60;
+                }
+
+            }
+            else{
+       
+                clearInterval(tick);
+                localStorage.removeItem("counter")
+                localStorage.removeItem("sec")
+                document.getElementById("testEx").style.display = 'inline';
+                document.getElementById("subAns").style.display = 'none';
+                alert('your exam is expired');
+             
+
+            }
+
+        },1000);
+    }
+
+    startTick();
+</script>

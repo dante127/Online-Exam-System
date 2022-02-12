@@ -1,0 +1,58 @@
+﻿@model IEnumerable<NationalExamSystem.Models.Option>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "../Admin/layout.cshtml";
+
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+<table class="table table-striped table-advance table-hover" style="margin-left:12%;width:auto">
+ 
+    <tr>
+        <td>
+            <a href="@Url.Action("Create")" class="btn btn-info">Add New Option</a>
+        </td>
+    </tr>
+
+    
+       <tr>
+        <th>
+         Question
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Answer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorrectAnswer)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Question.Question1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Answer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CorrectAnswer)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OptionId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OptionId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OptionId })
+        </td>
+    </tr>
+}
+
+</table>

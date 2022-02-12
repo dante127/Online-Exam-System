@@ -1,0 +1,128 @@
+﻿@using NationalExamSystem.Models;
+@model IEnumerable<NationalExamSystem.Models.Category>
+<!-- Start Top Categories
+  ============================================= -->
+<div id="top-categories" class="top-cat-area bg-gray default-padding bottom-less">
+    <div class="container">
+        <div class="row">
+            <div class="site-heading text-center">
+                <div class="col-md-8 col-md-offset-2">
+                    <h2>Top Categories</h2>
+                    <p>
+                        Thease are the Categories of National Exam
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="top-cat-items text-light inc-bg-color">
+                   
+                @{ 
+                    int a = 0;
+                    List<string> cats = new List<string>();
+                    cats.Add("item mariner");
+                    cats.Add("item java");
+                    cats.Add("item malachite");
+                    cats.Add("item emerald");
+                    cats.Add("item casablanca");
+                    cats.Add("item brilliantrose");
+                    cats.Add("item cinnabar");
+
+                    int b = 0;
+                    List<string> fonts = new List<string>();
+                    fonts.Add("flaticon-translate");
+                    fonts.Add("flaticon-conveyor");
+                    fonts.Add("flaticon-feature");
+                    fonts.Add("flaticon-firewall");
+                    fonts.Add("flaticon-interaction");
+                    fonts.Add("flaticon-education");
+                    fonts.Add("flaticon-potential");
+                }
+                @foreach (NationalExamSystem.Models.Category i in Model)
+                {
+                   
+                <div class="col-md-3 col-sm-6 equal-height">
+                    
+                      <div class="@cats.ElementAt(a)" style="background-image: url(../../assets/img/category/@i.Img);">
+                        
+                       
+                        <a href="@Url.Action("CateCrs","home",new { cateid=@i.Id})">
+                            <i class="@fonts.ElementAt(b)"></i>
+                            <div class="info">
+                                <h4>@i.Name</h4>
+
+                            </div>
+
+                        </a>
+
+                    </div>
+
+                </div>
+                    a++;
+                    b++;
+                }
+            </div>
+                
+        </div>
+    </div>
+</div>
+<!-- End Top Categories -->
+
+
+<!-- Start Popular Courses
+============================================= -->
+<div class="popular-courses bg-gray default-padding without-carousel">
+    <div class="container">
+        <div class="row">
+            <div class="site-heading text-center">
+                <div class="col-md-8 col-md-offset-2">
+                    <h2>Popular Courses</h2>
+                    <p>
+                        Discourse assurance estimable applauded to so. Him everything melancholy uncommonly but solicitude inhabiting projection off. Connection stimulated estimating excellence an to impression.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="popular-courses-items bottom-price">
+
+
+                @foreach (Course c in (List<Course>)ViewData["pop"])
+                {
+                <!-- Single Item -->
+                <div class="col-md-4 col-sm-6 equal-height">
+                    <div class="item">
+                        <div class="thumb">
+                            <a href="course-details.html">
+                                <img src="~/assets/img/@c.Img" alt="Thumb">
+                            </a>
+                            <div class="overlay">
+                                <a class="btn btn-theme effect btn-sm" href="@Url.Action("CourseDetails","home",new { id=@c.CourseId})">
+                                    <i class="fas fa-chart-bar"></i> View Details
+                                </a>
+                            </div>
+                        </div>
+                        <div class="info">
+                            
+                            <h4><a href="@Url.Action("CourseDetails","home",new { id=@c.CourseId})">@c.CourseName</a></h4>
+                            <div class="cats">
+                                <a href="#">@c.Category.Name</a>
+                            </div>
+                            <p> @c.ShortDesc                            </p>
+                            
+                         
+                        </div>
+                    </div>
+                </div>
+                <!-- End Single Item -->
+                }
+
+                <div class="col-md-12 button text-center">
+                    <a class="btn btn-dark effect circle btn-md" href="@Url.Action("Courses","home")">Browse All Courses</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Popular Courses -->
